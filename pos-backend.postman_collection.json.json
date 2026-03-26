@@ -1,0 +1,464 @@
+{
+  "info": {
+    "_postman_id": "7059a76f-e095-4433-a89f-5a9b82e99891",
+    "name": "Pos Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28090268"
+  },
+  "item": [
+    {
+      "name": "CATEGORY",
+      "item": [
+        {
+          "name": "Create Category(Main)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Men\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/category",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Subcategory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Shirts\",\n  \"parent_id\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/category",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "category"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/category",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "category"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PRODUCT",
+      "item": [
+        {
+          "name": "Add Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Cotton Shirt\",\n  \"description\": \"Premium cotton shirt\",\n  \"category_id\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/product",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "product"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/product/category/2",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "product",
+                "category",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "VARIANT",
+      "item": [
+        {
+          "name": "Add Variant (Size + Color + SKU + Barcode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": 1,\n  \"sku\": \"SH-RED-M\",\n  \"barcode\": \"10001\",\n  \"color\": \"Red\",\n  \"size\": \"M\",\n  \"price\": 999,\n  \"stock\": 10,\n  \"image_url\": \"https://example.com/shirt-red.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/variant",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "variant"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Another Variant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"product_id\": 1,\n  \"sku\": \"SH-BLU-L\",\n  \"barcode\": \"10002\",\n  \"color\": \"Blue\",\n  \"size\": \"L\",\n  \"price\": 1099,\n  \"stock\": 5,\n  \"image_url\": \"https://example.com/shirt-blue.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/variant",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "variant"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Scan Barcode (IMPORTANT)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/variant/barcode/10001",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "variant",
+                "barcode",
+                "10001"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Variants of Product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/variant/product/1",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "variant",
+                "product",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "STOCK",
+      "item": [
+        {
+          "name": "Stock IN",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"variant_id\": 1,\n  \"quantity\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/stock/in",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "stock",
+                "in"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Stock OUT",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"variant_id\": 1,\n  \"quantity\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/stock/out",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "stock",
+                "out"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ORDER (POS BILLING)",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"variant_id\": 1,\n      \"qty\": 2,\n      \"price\": 999\n    },\n    {\n      \"variant_id\": 2,\n      \"qty\": 1,\n      \"price\": 1099\n    }\n  ],\n  \"payment_type\": \"CASH\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{pos_url}}/order",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/order",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/order/1",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Orders by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/order?from=2026-03-25&to=2026-03-26\"",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2026-03-25"
+                },
+                {
+                  "key": "to",
+                  "value": "2026-03-26\""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Total Sales Today",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/order/summary/today",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order",
+                "summary",
+                "today"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Total Sales by Date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pos_url}}/order/summary?date=2026-03-26",
+              "host": [
+                "{{pos_url}}"
+              ],
+              "path": [
+                "order",
+                "summary"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-03-26"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
